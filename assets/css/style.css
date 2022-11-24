@@ -1,11 +1,13 @@
+/* Variable selectors for colours and often used styles. */
 :root {
     --pizazz: #f8efe7;
     --iron: #D1D7DB;
     --martinique: #362444;
     --screaming-green: #39FD6D;
     --martinique-border: 2.5px solid #362444;
+    --screamin-green-border: 3px solid #39FD6D;
 }
-
+/* Element selectors. */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: var(--iron);
@@ -81,6 +83,7 @@ footer {
     margin-top: 3.25rem;
 }
 
+/* Class selectors and the odd ID selector. */
 .hero{
     height:150px;
     width: 100%;
@@ -96,30 +99,54 @@ footer {
     padding: 0.5rem 0.5rem;
     margin: 6.5rem 5rem 0rem;
 }
-
-.row {
+/* This was the hardest part of the project for me.
+I first used flex divs of cards inside the work section attempting to use flex grow and shrink to arrange them.
+This didn't get any desired results. Just positioning the boxes in a responsive way. 
+I then attempted to use a grid display and that was starting to take shape.
+I used AskBCS to get further assistance in styling and instead I switched back to using flex boxes.
+Beau in AskBCS was of great assistance in pointing me in the right direction in using the row class selectors to get the rudimentary layout. */
+.container-work {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-items: flex-start;
+    flex-direction: column;
 }
 
 .card {
-    flex: 0 0;
+    flex: 1;
     margin: 0rem 1rem 1rem 2rem;
     border: 3px solid var(--screaming-green);
 }
 
-.card img {
-    max-width: 50vw;
-    max-height: 50vh;
+.card-column2 {
+    margin-left: -0.15rem;
+}
+
+.row-1 {
+    display:flex;
+}
+
+.row-2 {
+    display:flex;
+}
+
+.row-3 {
+    display:flex;
+}
+
+.image-leading {
+    display: flex;
+    flex: 1 1 0;
+    height: 250px;
+    width: 670px;
     opacity: 25%;
 }
 
-.card:hover {
-    background: var(--pizazz);
+.image {
+    display: flex;
+    flex: 1 1 0;
+    height: 100px;
+    width: 325px;
+    opacity: 25%;
 }
-
 
 .card-header {
     background-color: var(--screaming-green);
@@ -132,12 +159,18 @@ footer {
     padding-top: 0.5rem;
     font-size: 14px;
     font-weight:400;
+} 
+
+.card:hover {
+    background: var(--pizazz);
 }
 
 #contact-style {
-    margin: 0rem 5rem;
+    /* display:flex;
+    justify-content: space-between; */
+    margin: 2rem 5rem;
     margin-right: 3rem;
-    padding-left: 10rem;
+    padding-left: 1rem;
 }
 
 .contact a {
@@ -156,6 +189,7 @@ footer {
     float: right;
 }
 
+/* media queries */
 @media screen and (max-width: 768px) {
     header{
         height: 150px;
@@ -184,6 +218,13 @@ footer {
         margin-bottom: 1rem;
     }
 
+    .container-work{
+        padding-top: 1rem;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
     #contact-style {
         padding-left: 5rem;
     }
@@ -200,6 +241,13 @@ footer {
         padding-left: 0.6rem;
         margin: 2.5rem 1rem;
     }
+
+    /* My approach to the side bar was to use headings rather than an aside
+as I couldn't get my head around matching up the contents with the main
+section. I used a series of left and right borders for the styling.
+
+I then put them in media queries to make the layout more responsive and
+to get around the wonky design when the browser was made smaller.*/
 
     p {
         border-left: var(--martinique-border);
@@ -226,5 +274,14 @@ footer {
         display: inline;
         text-align: center;
         padding-left: 1rem;
+    }
+
+    #contact-style {
+        display:flex;
+        justify-content: space-between;
+    }
+
+    .contact a{
+        margin-top: 1rem;
     }
 }
